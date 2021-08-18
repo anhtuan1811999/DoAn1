@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Đăng kí người dùng</title>
+    <script type="text/html" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/html" src="/JS/register.js"></script>
+    <style>
+        .register-form {
+            text-align: center;
+        }
+        .input-register {
+            width: 400px;
+            margin: auto;
+        }
+        .input {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <ul>
+        <li><a th:href="@{/home}">trang chủ</a></li>
+        <li><a th:href="@{/register}">đăng kí tài khoản</a></li>
+        <li><a th:href="@{/user}">User</a></li>
+        <li><a th:href="@{/admin}">Admin</a></li>
+        <li><a th:href="@{/login1}">Đăng nhập</a></li>
+        <li><a th:href="@{/logout}">Đăng xuất</a></li>
+        <li><a th:href="@{/cart}">các sản phẩm đã chọn</a></li>
+    </ul>
+</div>
+<div class="register-form">
+    <div class="info-container">
+        <div class="input-register" id="full-name">
+            <label for="full-name-input">Họ và tên</label> <br>
+            <input class="input" type="text" id="full-name-input">
+        </div>
+        <div class="input-register" id="date">
+            <label for="date-input">Ngày tháng năm sinh</label> <br>
+            <input class="input" type="date" id="date-input">
+        </div>
+        <div class="input-register" id="address">
+            <label for="address-input">Địa chỉ</label> <br>
+            <input class="input" type="text" id="address-input">
+        </div>
+        <div class="input-register" id="phone-number">
+            <label for="phone-number-input">Số điện thoại</label> <br>
+            <input class="input" type="text" id="phone-number-input">
+        </div>
+        <div class="input-register" id="email">
+            <label for="email-input">Địa chỉ Mail</label> <br>
+            <input class="input" type="text" id="email-input">
+        </div>
+        <div class="input-register" id="user-name">
+            <label for="user-name-input">Tên người dùng</label> <br>
+            <input class="input" type="text" id="user-name-input">
+        </div>
+        <div class="input-register" id="password">
+            <label for="password-input">Mật khẩu</label> <br>
+            <input class="input" type="password" id="password-input">
+        </div>
+    </div>
+    <div class="submit-register">
+        <input type="submit" id="send-data" value="Đăng kí" onclick="register()">
+    </div>
+</div>
+
+<script>
+
+    async function register () {
+        var data = {
+            full_name : document.getElementById("full-name-input").value,
+            date : document.getElementById("date-input").value,
+            address : document.getElementById("address-input").value,
+            phone_number : document.getElementById("phone-number-input").value,
+            email : document.getElementById("email-input").value,
+            user_name : document.getElementById("user-name-input").value,
+            password : document.getElementById("password-input").value
+        }
+        await fetch('/user/HandleRegister', {
+            headers: {
+                "Content-Type":"Application/JSON",
+                "Accept":"Application/JSON"
+            },
+            method:'post',
+            body: JSON.stringify(data)
+        }).then( res => {
+            var stt = res.status
+            if (stt == 200) {
+                alert('tài khoản đă được tạo thành công')
+            } else {
+                throw new Error()
+            }
+        })
+            .catch(err => {
+                alert("tài khoản đã tồn tại")
+                console.log('đã gặp sự cố trong quá trình tạo tài khoản')
+            })
+    }
+</script>
+</body>
+</html>

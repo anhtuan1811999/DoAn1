@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>trang admin</title>
+</head>
+<body>
+<h1>welcome to admin</h1>
+<div class="header">
+  <ul>
+    <li><a th:href="@{/home}">trang chủ</a></li>
+    <li><a th:href="@{/register}">đăng kí tài khoản</a></li>
+    <li><a th:href="@{/user}">User</a></li>
+    <li><a th:href="@{/admin}">Admin</a></li>
+    <li><a th:href="@{/login1}">Đăng nhập</a></li>
+    <li><a th:href="@{/logout}">Đăng xuất</a></li>
+    <li><a th:href="@{/cart}">các sản phẩm đã chọn</a></li>
+  </ul>
+</div>
+
+
+<table border="1" style="width:1000px">
+  <tr>
+    <th>Full Name</th>
+    <th>Date</th>
+    <th>Address</th>
+    <th>Phone Number</th>
+    <th>Email</th>
+  </tr>
+
+  <tr th:each="user : ${users}">
+    <td><p th:text="${user.getFullName()}"></p></td>
+    <td><p th:text="${user.getDate()}"></p></td>
+    <td><p th:text="${user.getAddress()}"></p></td>
+    <td><p th:text="${user.getPhoneNumber()}"></p></td>
+    <td><p th:text="${user.getEmail()}"></p></td>
+  </tr>
+</table>
+
+</body>
+</html>

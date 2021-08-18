@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="header">
+    <ul>
+        <li><a th:href="@{/home}">trang chủ</a></li>
+        <li><a th:href="@{/register}">đăng kí tài khoản</a></li>
+        <li><a th:href="@{/user}">User</a></li>
+        <li><a th:href="@{/admin}">Admin</a></li>
+        <li><a th:href="@{/login1}">Đăng nhập</a></li>
+        <li><a th:href="@{/logout}">Đăng xuất</a></li>
+        <li><a th:href="@{/cart}">các sản phẩm đã chọn</a></li>
+    </ul>
+</div>
+    <h1>this is ModelandView</h1>
+    <p th:text="${user.getFullName()}"></p>
+    <p th:text="${message}"></p>
+</body>
+</html>

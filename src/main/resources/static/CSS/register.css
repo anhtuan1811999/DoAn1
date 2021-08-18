@@ -1,0 +1,13 @@
+.register-form {
+    text-align: center;
+    background:rgb(122, 157, 218);
+}
+.input-register {
+    background: rgb(181, 199, 231);
+    width: 400px;
+    margin: auto;
+}
+.input {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}

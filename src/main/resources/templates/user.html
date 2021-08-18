@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+</head>
+<body>
+User:     <span th:text="${username}"></span>
+<div class="header">
+    <ul>
+        <li><a th:href="@{/home}">trang chủ</a></li>
+        <li><a th:href="@{/register}">đăng kí tài khoản</a></li>
+        <li><a th:href="@{/user}">User</a></li>
+        <li><a th:href="@{/admin}">Admin</a></li>
+        <li><a th:href="@{/login1}">Đăng nhập</a></li>
+        <li><a th:href="@{/logout}">Đăng xuất</a></li>
+        <li><a th:href="@{/cart}">các sản phẩm đã chọn</a></li>
+    </ul>
+</div>
+    <br>
+    <ul>
+        <li><a th:href="@{/update-user}">chỉnh sửa thông tin cá nhân</a></li>
+        <li><a th:href="@{/addPosting}">dăng bài rao bán đất</a></li>
+    </ul>
+<h2> Thông tin bài đăng của bạn </h2>
+    <table border="1">
+    <tr>
+        <th>Tỉnh/Thành phố</th>
+        <th>Quận/Huyện</th>
+        <th>Phường/Xã</th>
+        <th>Địa chỉ cụ thể</th>
+        <th>Diện tích</th>
+        <th>Mô Tả</th>
+        <th>liên hệ</th>
+        <th>Ảnh Minh Hoạ</th>
+    </tr>
+    <tr th:each="post : ${posts}">
+        <td><p th:text="${post.getCity()}"></p></td>
+        <td><p th:text="${post.getDistrict()}"></p></td>
+        <td><p th:text="${post.getWard()}"></p></td>
+        <td><p th:text="${post.getAddress()}"></p></td>
+        <td><p th:text="${post.getArea()}"></p></td>
+        <td><p th:text="${post.getDescription()}"></p></td>
+        <td><p th:text="${post.getUser().getPhoneNumber()}"></p></td>
+        <td><img th:src="'data:image/jpeg;base64,'+${post.getImage()}"></td>
+    </tr>
+</table>
+<style>
+    img {
+        width: 250px;
+        height: 150px;
+    }
+    td {
+        text-align: center;
+    }
+</style>
+</body>
+</html>

@@ -1,0 +1,18 @@
+body{
+    background: #8e44ad;
+}
+.login {
+    width: 500px;
+    height: 180px;
+    background: #2691d9;
+    text-align: center;
+}
+.login-form {
+    text-align: center;
+    padding-top: 20px;
+    display: inline-block;
+}
+.button-login-signup {
+    text-align: center;
+    display: inline-block;
+}

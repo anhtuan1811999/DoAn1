@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>cập nhật thông tin cá nhân</title>
+</head>
+<body>
+<div class="header">
+    <ul>
+        <li><a th:href="@{/home}">trang chủ</a></li>
+        <li><a th:href="@{/register}">đăng kí tài khoản</a></li>
+        <li><a th:href="@{/user}">User</a></li>
+        <li><a th:href="@{/admin}">Admin</a></li>
+        <li><a th:href="@{/login1}">Đăng nhập</a></li>
+        <li><a th:href="@{/logout}">Đăng xuất</a></li>
+        <li><a th:href="@{/cart}">Các sản phẩm đã chọn</a></li>
+    </ul>
+</div>
+    <h1>this is update</h1>
+
+    <div class="update-info">
+
+        <form class="form-horizontal" method="post" action="/user/update">
+            <fieldset class="fieldset">
+                <h3 class="fieldset-title">Personal Info</h3>
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-3 col-xs-12 control-label">FullName</label>
+                    <div class="col-md-10 col-sm-9 col-xs-12">
+                        <input type="text" class="form-control" name="fullname" id="fullname" th:value="${user.getFullName()}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-3 col-xs-12 control-label">Date</label>
+                    <div class="col-md-10 col-sm-9 col-xs-12">
+                        <input type="text" class="form-control" name="date" id="date" th:value="${user.getDate()}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-3 col-xs-12 control-label">Address</label>
+                    <div class="col-md-10 col-sm-9 col-xs-12">
+                        <input type="text" class="form-control" name="address" id="address" th:value="${user.getAddress()}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-3 col-xs-12 control-label">Phone Number</label>
+                    <div class="col-md-10 col-sm-9 col-xs-12">
+                        <input type="text" class="form-control" name="phonenumber" id="phonenumber" th:value="${user.getPhoneNumber()}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-2 col-sm-3 col-xs-12 control-label">Email</label>
+                    <div class="col-md-10 col-sm-9 col-xs-12">
+                        <input type="text" class="form-control" name="email" id="email" th:value="${user.getEmail()}">
+                    </div>
+                </div>
+            </fieldset>
+            <hr>
+            <div class="form-group">
+                <div class="col-md-10 col-sm-9 col-xs-12 col-md-push-2 col-sm-push-3 col-xs-push-0">
+                    <input class="btn btn-primary" type="submit" value="submit">
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+
+    </script>
+</body>
+</html>

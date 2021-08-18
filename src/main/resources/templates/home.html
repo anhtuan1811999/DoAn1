@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <h1>trang chu</h1>
+    <p th:text="${username}"></p>
+    <div class="header-panel">
+        <div class="header">
+            <ul>
+                <li><a th:href="@{/home}">trang chủ</a></li>
+                <li><a th:href="@{/register}">đăng kí tài khoản</a></li>
+                <li><a th:href="@{/user}">User</a></li>
+                <li><a th:href="@{/admin}">Admin</a></li>
+                <li><a th:href="@{/login1}">Đăng nhập</a></li>
+                <li><a th:href="@{/logout}">Đăng xuất</a></li>
+                <li><a th:href="@{/cart}">các sản phẩm đã chọn</a></li>
+            </ul>
+        </div>
+        <div class="table">
+            <table border="1">
+                <tr>
+                    <th>Tỉnh/Thành phố</th>
+                    <th>Quận/Huyện</th>
+                    <th>Phường/Xã</th>
+                    <th>Địa chỉ cụ thể</th>
+                    <th>Diện tích</th>
+                    <th>Mô Tả</th>
+                    <th>liên hệ</th>
+                    <th>Ảnh Minh Hoạ</th>
+                    <th></th>
+                </tr>
+                <tr th:each="post : ${posts}">
+                    <td><p th:text="${post.getCity()}"></p></td>
+                    <td><p th:text="${post.getDistrict()}"></p></td>
+                    <td><p th:text="${post.getWard()}"></p></td>
+                    <td><p th:text="${post.getAddress()}"></p></td>
+                    <td><p th:text="${post.getArea()}"></p></td>
+                    <td><p th:text="${post.getDescription()}"></p></td>
+                    <td><p th:text="${post.getUser().getPhoneNumber()}"></p></td>
+                    <td><img th:src="'data:image/jpeg;base64,'+${post.getImage()}"></td>
+                    <td><input th:type="button" th:value="lưu" th:onclick="'save('+${post.getIdPost()}+')'"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <script>
+        async function save(idpost) {
+            // var id = {
+            //     "idpost":idpost
+            // }
+            fetch( 'http://localhost:8086/cart/save', {
+                    headers: {
+                        'Content-Type':'application/json',
+                        'Accept': 'application/json'
+                    },
+                    method: "POST",
+                    body:idpost
+                })
+            .then(res =>{
+                var header = res.headers.get("code")
+                var status = res.status
+                console.log(status +' : '+ header)
+                if (status == 400 && header == "anonymous"){
+                    alert("bạn chưa đăng nhập")
+                } else {
+                    if (status == 400 && header == "existed"){
+                        alert("Bài đăng này đã được lưu")
+                    } else {
+                        alert("Lưu thành công")
+                    }
+                }
+            })
+        }
+    </script>
+    <style>
+            img {
+                width: 250px;
+                height: 150px;
+            }
+            td {
+               text-align: center;
+            }
+    </style>
+</body>
+</html>
